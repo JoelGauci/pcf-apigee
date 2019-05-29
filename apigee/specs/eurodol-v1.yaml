@@ -11,7 +11,7 @@ info:
     eurodol API used to convert euro into dollar (and vice versa) and get the exchange rate.
 
 host:
-  emea-poc8-test.apigee.net
+  emea-poc7-test.apigee.net
 
 basePath: /{YOUR_PERSONAL_CODE}/api/v1
 
