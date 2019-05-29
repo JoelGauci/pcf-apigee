@@ -1,0 +1,83 @@
+# Pivotal Cloud Foundry & Google Apigee Workshop.
+# Be aware that YAML has indentation based coping.
+# Code completion support is available so start typing for available options.
+swagger: '2.0'
+
+# This is your document metadata
+info:
+  version: "1.0.0"
+  title: eurodol
+  description: |
+    eurodol API used to convert euro into dollar (and vice versa) and get the exchange rate.
+
+host:
+  emea-poc8-test.apigee.net
+
+basePath: /{YOUR_PERSONAL_CODE}/api/v1
+
+schemes:
+  - https
+
+securityDefinitions:
+  apiKey:
+    type: "apiKey"
+    in: "header"
+    name: "x-apikey"
+
+# Paths of the eurodol API
+paths:
+  # /convert
+  /convert:
+    # This is a HTTP operation
+    get:
+      # Describe this verb here. Note: you can use markdown
+      description: |
+        Gets euro dollar exchange rate and result for conversion
+      # This is array of GET operation parameters:
+      parameters:
+        # An example parameter that is in query and is required
+        - name: amount
+          in: query
+          description: amount to convert from one currency to another (euro to dollar)
+          required: true
+          type: number
+          format: double
+      security:
+        - apiKey: []
+      # Expected responses for this operation:
+      responses:
+        # Response code
+        200:
+          description: Successful response
+          # A schema describing your response object.
+          # Use JSON Schema format
+          schema:
+            title: EuroDolResponse
+            type: object
+            properties:
+              input:
+                type: object
+                description: input parameters for conversion
+                properties:
+                  amount:
+                    type: number
+                    format: double
+                    description: input parameters for conversion
+                  symbol:
+                    type: string
+                    description: currency - EUR or USD
+              output:
+                type: object
+                description: output parameters for conversion
+                properties:
+                  amount:
+                    type: number
+                    format: double
+                    description: output parameters for conversion
+                  symbol:
+                    type: string
+                    description: currency - EUR or USD
+              exchangeRate:
+                type: number
+                format: double
+                description: exchange rate between EUR and USD at the time of the request
