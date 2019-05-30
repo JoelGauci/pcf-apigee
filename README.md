@@ -200,7 +200,7 @@ This will start the creation process of your **eurodol** API Proxy...
 
 On the next panel, please make some modification to make your API Proxy and its base path unique:
 1. Add your initials to the name of the API Proxy: **eurodol-jog** in my case
-2. Copy and pase the URI of the **Existing API** URL to the **Proxy Base Path** text field
+2. Copy and paste the URI of the **Existing API** URL to the **Proxy Base Path** text field
 3. Modify the value of the **Existing API** hostname with the value of your PCF app hostname : **https://eurodol-brash-lemur.cfapps.io** in my case 
 
 Except your own initials and your own PCF app hostname, you should see something like this in term of API Proxy settings:
@@ -209,7 +209,7 @@ Except your own initials and your own PCF app hostname, you should see something
 
 If everything is checked on your side, you can click the **Next** button
 
-Verify that the **GET /convert** will be exposed by the API Proxy. The check box must be selected and you cqn click the **Next** button, as shown on the following picture:
+Verify that the **GET /convert** resource will be exposed by the API Proxy. The check box must be selected and you can click the **Next** button, as shown on the following picture:
 
 <img src="img/236-apiproxy-convert.png">
 
@@ -217,7 +217,7 @@ Then, select the **Pass through (none)** option and click **Next**, as shown her
 
 <img src="img/237-apiproxy-passthru.png">
 
-Then, unselect the **default** virtual host as we only want to provide secured connection and click **Next**, as shown here:
+Then, unselect the **default** virtual host as we only want to provide secured connection with our API Proxy and click **Next**, as shown here:
 
 <img src="img/238-apiproxy-secure.png">
 
@@ -255,9 +255,31 @@ Click the policy and you will access its XML configuration:
 <img src="img/245-apiproxy-AM-xmlconfig.png">
 
 All the policies in Apigee are based on an XML configuration. 
-Copy the content of the following XML configuration : 
+Copy the content of the following XML configuration, from the link below:
 [Add-CORS.xml](https://raw.githubusercontent.com/JoelGauci/pcf-apigee/master/apigee/config/Add-CORS.xml)
-..and paste it in the policy panel, as shown here:
+
+... or from the following code section:
+
+```code
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="Add-CORS">
+    <DisplayName>Add CORS</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <Set>
+        <Headers>
+            <Header name="Access-Control-Allow-Origin">*</Header>
+            <Header name="Access-Control-Allow-Headers">origin, x-requested-with, accept, content-type, x-apikey</Header>
+            <Header name="Access-Control-Max-Age">3628800</Header>
+            <Header name="Access-Control-Allow-Methods">GET, PUT, POST, DELETE</Header>
+        </Headers>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="response"/>
+</AssignMessage>
+```
+
+...and paste it in the policy panel, as shown here:
 
 <img src="img/246-apiproxy-AM-copygit.png">
 
