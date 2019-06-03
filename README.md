@@ -45,13 +45,13 @@ PCF & Google Apigee Workshop
     - 6.1 Publish your eurodol API Product
     - 6.2 Generate doc using the OpenAPI **eurodol-v1** specification
 7. Step 7 - Test your API Product from the Developer Portal
-    - Connect to your Developer Portal
-    - Create an account an your Developer Portal
-    - Activate your account and sign in
-    - Create an Application on your Developer Portal
-    - Subscribe to the **eurodol** API Product
-    - Test your API Product
-    - Verify the Quota Enforcement is enforced
+    - 7.1 Connect to your Developer Portal
+    - 7.2 Create an account an your Developer Portal
+    - 7.3 Activate your account and sign in
+    - 7.4 Create an Application on your Developer Portal
+    - 7.5 Subscribe to the **eurodol** API Product
+    - 7.6 Test your API Product
+    - 7.7 Verify the Quota Enforcement is enforced
 8. Step 8 - Wire PCF and Apigee
 9. Step 9 - Analytics and API Monitoring in Apigee Edge
     - 9.1 Connect to your Apigee organization
@@ -649,6 +649,112 @@ Please wait for a few seconds and your dev portal is created!!!
 Click the **Live Portal** link (at the right top of the screen) in order to access your developer portal:
 
 <img src="img/515-default-dev-portal.png" width="100%">
+
+# 6 Step 6 - Publish your API Product into your API Developer Portal
+In this section, you pwill publish the API product into your developer portal and generate the technical documentation based on the **eurodol-v1** Open API specification.
+
+## Step 6.1 - Publish your eurodol API Product
+
+In order to deploy the API Product you have created previously, click the **APIs** icon, present on the developer portal panel, as shown here:
+
+<img src="img/611-dev-portal-apis.png" width="100%">
+
+From this point, please click the **Get started** button to start deploying an API Product, as shown on the following picture:
+
+<img src="img/612-dev-portal-getstarted.png" width="100%">
+
+Select your **eurodol** API Product from the API Products list, and then click **Next**:
+
+<img src="img/613-dev-portal-product.png" width="100%">
+
+## Step 6.2 -  Generate doc using the OpenAPI eurodol-v1 specification
+
+On the following window, select **Choose a different spec...** and select your **eurodol-v1** Open API specification, as shown here after, and click the **Select** button:
+
+<img src="img/614-dev-portal-oas.png" width="100%">
+
+<img src="img/615-dev-portal-oas.png" width="100%">
+
+Then click the **Finish** button, once you have checked information are correct:
+
+<img src="img/616-dev-portal-finish.png" width="100%">
+
+From there, you can see your API Product has been deployed:
+
+<img src="img/617-dev-portal-apiproducts.png" width="100%">
+
+At this point, you can directly to step 8 or first test your API Product from the Developer Portal.
+
+# 7 Step 7 - Test your API Product from the Developer Portal
+
+In this section, we test the API Product that has just been deployed on the Developer Portal, from the Developer Portal itself!
+
+## Step 7.1 -  Connect to your Developer Portal
+
+In order to connect to your Developer Portal, click the **Live Portal** link, as shown here:
+
+<img src="img/711-dev-portal.png" width="100%">
+
+## Step 7.2 -  Create an account an your Developer Portal
+
+From the Developer Portal, click the **Sign In** link (top right of the portal) and then click the link **Create account**, as shown here:
+
+<img src="img/721-dev-portal-create-account.png" width="50%">
+
+Enter the information of the account that you want to create, and click the **Create Account** button, as showm here:
+
+<img src="img/722-dev-portal-create-account-info.png" width="100%">
+
+For the purpose of this workshop, please enter a valid email address. You will need to access this mailbox in order to activate the account you have just created.
+
+## Step 7.3 -  Activate your account and sign in
+
+Please access the email's inbox in order to activate the developer user account you have created previously.
+Click the link that will enable our account activation, as shown here:
+
+<img src="img/731-dev-portal-create-account-activation.png" width="100%">
+
+## Step 7.4 -  Create an Application on your Developer Portal
+
+Sign in on your Developer Portal using the account that has just been activated.
+From there, click on the App Developer's account name and select **Apps**, as shown here:
+
+<img src="img/741-dev-portal-signin-app.png" width="100%">
+
+Click the **+New App** button to start creating your first application from your Developer Portal:
+
+<img src="img/742-dev-portal-create-app.png" width="100%">
+
+## Step 7.5 -  Subscribe to the **eurodol** API Product
+
+Please provide the requried information, select the **eurodol** API Product and click the **Create** icon, as shown on the following picture:
+
+<img src="img/743-dev-portal-app.png" width="100%">
+
+## Step 7.6 -  Test your API Product
+
+Click the **APIs** item on the Developer Portal menu. From there, select your **eurodol** API Product.
+
+Click the **Authorize** button, select your application from the list of available apps, then select the (other) **Authorize** button from the dialog box.
+
+<img src="img/761-authorize.png" width="100%">
+
+Here, you just specify that you want to use the application (api key end secret) to test the API Product. In our case, you just need to provide the api key (remember you configured an API Key Verification on your **eurodol** API Proxy...).
+
+Select the **convert** resource (on the left), then enter a value that you want to convert and click the **EXECUTE** button.
+
+<img src="img/762-execute.png" width="100%">
+
+You should get a response as the one provided on the following picture:
+
+<img src="img/763-result.png" width="100%">
+
+## Step 7.7 -  Verify the Quota Enforcement is enforced
+    
+Remember the 
+
+
+
 
 # Step 8 - Wire PCF and Apigee
 
