@@ -54,10 +54,10 @@ PCF & Google Apigee Workshop
     - Verify the Quota Enforcement is enforced
 8. Step 8 - Wire PCF and Apigee
 9. Step 9 - Analytics and API Monitoring in Apigee Edge
-    - 9.1 Connect your Apigee organization
-    - Switch to the Analytics Tab
-    - Discover the Analytics for your API Proxy and API Product
-    - Discover the API Monitoring capabilities of the Apigee API Managemnent platformn
+    - 9.1 Connect to your Apigee organization
+    - 9.2 Switch to the Analytics Tab
+    - 9.3 Discover the Analytics for your API Proxy and API Product
+    - 9.4 Discover the API Monitoring capabilities of the Apigee API Managemnent platformn
 10. Step 10 - Wrap Up
 
 
@@ -272,6 +272,12 @@ Except your own initials and your own PCF app hostname, you should see something
 
 <img src="img/235-apiproxy-settings.png">
 
+Also important is to "clean" the value of the **Existing API** field: remove your personal code from the URI.
+
+At the end, you should see something like this:
+
+<img src="img/23b5-apiproxy-settings.png">
+
 If everything is checked on your side, you can click the **Next** button
 
 Verify that the **GET /convert** resource will be exposed by the API Proxy. The check box must be selected and you can click the **Next** button, as shown on the following picture:
@@ -303,7 +309,7 @@ CLick the **DEVELOP** tab of you API Proxy menu, as shown here:
 <img src="img/241-apiproxy-develop.png">
 
 From this tab, you can access the configuration details of your API Proxy.
-First and foremost, we need to add a mediation policy that will handle CORS (Cross Origin Resource Sharing) on our API P{roxy}. Click the **+** button on the **Policies** item on the left side of the panel, as shown on the following picture:
+First and foremost, we need to add a mediation policy that will handle CORS (Cross Origin Resource Sharing) on our API Proxy. Click the **+** button on the **Policies** item on the left side of the panel (Navigator), as shown on the following picture:
 
 <img src="img/242-apiproxy-addpolicy.png">
 
@@ -351,6 +357,271 @@ Copy the content of the following XML configuration, from the link below:
 You can check that the name of the Assign Message policy has changed. It is now **Add CORS**, as shown on the list of policies:
 
 <img src="img/247-apiproxy-AM-name.png">
+
+Click on the **Save** button on your API Proxy: on new dialog box opens, which proposes to save your API Proxy as a new revision. Click the **Save as New Revision** button, as shown here:
+
+<img src="img/248-apiproxy-newrevision.png" width="50%">
+
+Now, we are going to modify the configuration of the **eurodol-xxx** API Proxy. For this, please first click the **default** item from the **Proxy Endpoints** component in the Navigator section, as shown on the following picture:
+
+<img src="img/249-apiproxy-proxyendpoints.png" width="100%">
+
+Copy the content of the following proxy endpoint XML configuration, from the link below:
+[Add-CORS.xml](https://raw.githubusercontent.com/JoelGauci/pcf-apigee/master/apigee/config/proxy.xml)
+
+... or from the following code section:
+
+```code
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <Description/>
+    <FaultRules/>
+    <DefaultFaultRule name="default-fault">
+        <Step>
+            <Name>Add-CORS</Name>
+        </Step>
+    </DefaultFaultRule>
+    <PreFlow name="PreFlow">
+        <Request/>
+        <Response>
+            <Step>
+                <Name>Add-CORS</Name>
+            </Step>
+        </Response>
+    </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response/>
+    </PostFlow>
+    <Flows>
+        <Flow name="get /convert">
+            <Description/>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/convert") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="CORS preflight">
+            <Description>CORS preflight</Description>
+            <Request/>
+            <Response>
+                <Step>
+                    <Name>Add-CORS</Name>
+                </Step>
+            </Response>
+            <Condition>request.verb = "OPTIONS"</Condition>
+        </Flow>
+    </Flows>
+    <HTTPProxyConnection>
+        <BasePath>/{YOUR_PERSONAL_CODE}/api/v1</BasePath>
+        <Properties/>
+        <VirtualHost>secure</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="NoRoute">
+        <Condition>request.verb == "OPTIONS"</Condition>
+    </RouteRule>
+    <RouteRule name="default">
+        <TargetEndpoint>default</TargetEndpoint>
+    </RouteRule>
+</ProxyEndpoint>
+```
+
+...and paste it in the proxy endpoint policy panel, as shown here:
+
+<img src="img/24A-apiproxy-proxyendpoints-config.png" width="100%">
+
+From the display panel of the **default** proxy endpoint (just above the configuration you have modified), change the value of the **{YOUR_PERSONAL_CODE}** tag:
+
+<img src="img/24B-apiproxy-proxyendpoints-tag.png" width="100%">
+
+Once you have this modification, please save your API Proxy, using the **Save** button, as shown on the following image:
+
+<img src="img/24C-apiproxy-proxyendpoints-save.png" width="100%">
+
+Once your API Proxy has been saved, clicke the **Deployment** selection list, and choose the **test** environment, as shown here:
+
+<img src="img/24D-apiproxy-deploy-test.png" width="100%">
+
+On the dialog box, which opens click the **Deploy** button to finalize the deployement of your API Proxy on the **test** environment:
+
+<img src="img/24E-apiproxy-deploy-confirm.png" width="100%">
+
+Please check the deployment has been successfully executed: clicking on the **Deployment** selection list, you should see a green point related to the **test** environment:
+
+<img src="img/24F-apiproxy-deployment-ok.png" width="50%">
+
+Congratulations!!! Your API Proxy is now operational.
+
+
+# 3 Step 3 - Test your API Proxy using the Trace & Debug tool
+
+In this section, you are going to test your own **eurodol** API Proxy using the Apigee Edge's **Trace & Debug tool**
+
+First, switch to the **Trace** section of your API Proxy, as shown here:
+
+<img src="img/301-apiproxy-traces.png" width="50%">
+
+You can see on the follwing picture an overview of the **Trace & Debug** panel. Please click the **Start Trace Session** green button to start a new trace session.
+Please note a trace session is available during 10 minutes.
+
+<img src="img/302-apiproxy-starttracesession.png" width="100%">
+
+One the trace session has been activated, the **Trace Session** button becomes red and its text has changed to **Stop Trace Session**
+
+Please add the following resource and filter information to the base path of your API Proxy, as shown here after:
+
+```code
+/convert?amount=100
+```
+
+<img src="img/303-apiproxy-complete-url.png" width="100%">
+
+Then click the **Send** button to request the specific resource, as shown on the following picture:
+
+<img src="img/304-apiproxy-trace-send.png" width="100%">
+
+A transacation should appear on the left hand side of the **Trace** panel:
+
+<img src="img/305-apiproxy-trace-transactions.png" width="100%">
+
+You can follow the execution of you API Proxy and its policies using the **Trace** tool. You can access internal variables, context variables, request and response headers, payloads, URIs information....
+
+<img src="img/306-apiproxy-trace-steps.png" width="100%">
+
+Take some time to discover the **Trace & Debug** tool or ask for any questions to instructors in case yiuy need detailed inforamtion at this point of the workshop.
+
+If you want to have a look on your PCF application response, click the circle just after the factory symbol (the provider or backend app/api). You will then be able to see the response of your backend app, as shown here:
+
+<img src="img/307-apiproxy-trace-response.png" width="100%">
+
+## Step 3.1 - Add Traffic Management (Quota Enforcement) and Security (Verify API Key) policies to your API Proxy
+
+Stop the trace session and switch to the **Develop** tab. Select your API Proxy endpoint **Preflow** level, as shown here:
+
+<img src="img/308-apiproxy-preflow.png" width="100%">
+
+If you want to know more about API Proxy flows, please click the following link in order to access detailed documentation related to this topic: 
+
+[API Proxy Flows](https://docs.apigee.com/api-platform/fundamentals/what-are-flows)
+
+Click the **+Step** button at the request processing level, as shown on the following picture:
+
+<img src="img/309-apiproxy-step.png" width="100%">
+
+Select the **Verify API Key** policy (part fo the security policies) and click the **Add** button, as shown here:
+
+<img src="img/30A-apiproxy-vak.png" width="100%">
+
+On the policy XML configuration, change the APIKey ref attribute value:
+
+<img src="img/30B-apiproxy-vak-apikey.png" width="100%">
+
+```code
+<APIKey ref="request.header.x-apikey"/>
+```
+
+This configuration means that your API Proxy enforces an API Key verification.  The API key that is enforced is extracted from an HTTP request header, whose name is **x-apikey**
+
+Click the **+Step** again (on the request side), and add a **Quota** enforcement policy (from the traffic managememnt set of policies):
+
+<img src="img/30C-apiproxy-quota.png" width="100%">
+
+Click the **Quota** enforcement policy, copy the following configuration...
+
+```code
+<Quota continueOnError="false" enabled="true" name="Q-EnforceQuotaPerKey" type="calendar">
+    <Allow count="10" countRef="verifyapikey.Verify-API-Key-1.apiproduct.developer.quota.limit"/>
+    <Interval ref="verifyapikey.Verify-API-Key-1.apiproduct.developer.quota.interval">1</Interval>
+    <TimeUnit ref="verifyapikey.Verify-API-Key-1.apiproduct.developer.quota.timeunit">minute</TimeUnit>
+    <Identifier ref="verifyapikey.Verify-API-Key-1.client_id"/>
+    <Distributed>true</Distributed>
+    <Synchronous>true</Synchronous>
+    <StartTime>2019-01-01 12:00:00</StartTime>
+</Quota>
+```
+
+... and use it to replace the current quota policy configuration, as shown here:
+
+<img src="img/30D-apiproxy-quota-config.png" width="100%">
+
+As defined in the configuration, the quota will be used as defined in the product, in which the API Proxy will be packaged.
+To know more about API Products, please contact your instructors or access the following link:
+[API Product](https://docs.apigee.com/api-platform/publish/what-api-product)
+
+Save the configuration of your API Proxy (remember you to click the **Save** button on the left hand side...)
+
+# Step 4 - Wire PCF and Apigee Step 4 - Package your API Proxy into an API Product in Apigee Edge
+
+At this point of the workshop, you cannot access your API Proxy without generating a (beautiful) 401 error code (as API Key verification will not be successfull).
+In the following sections, we will create a developer, then an application (and therefore an **api key** and **api secret**).
+We will then create an API Product, which will package your **eurodol-xxx** API Proxy that has been created so far. 
+Finally, the API Product will be bound to this application and this will allow the application to consume the product and its embedded API Proxies...
+
+## Step 4.1 - Create a developer
+In order to create a developer, please click the **Publish** and then **Developers** tab, as shown here after:
+
+<img src="img/411-publish-developers.png" width="100%">
+
+Click the **+Developer** button, in order to add a new developer:
+
+<img src="img/412-add-developer.png" width="50%">
+
+You can define yourself as a new application developer, so please provide your personal information and click the **Create** button, as shown here:
+
+<img src="img/413-create-developer.png" width="100%">
+
+You should see a new developer (you) in the list of available developers. Information you have provided at the creation time are shown as a result:
+
+<img src="img/414-developer-info.png" width="100%">
+
+As you can see, no application has been linked to the developer. Let's create a developer app!
+
+## Step 4.2 - Create an API Product 
+
+From the **Publish** section, please select the **API Products** tab, as shown here after:
+
+<img src="img/421-products.png" width="100%">
+
+Click the **+API Product** button, as shown here:
+
+<img src="img/422-add-products.png" width="50%">
+
+Please enter the information related to your API Product. You should see mostly the same type of data except that you have to use your personal code (**jog** in the example):
+
+<img src="img/423-product1.png" width="100%">
+
+At the **API resources** level, please click the **+** button and select your own and personal API Proxy (**eurodol-xxx**), as shown here:
+
+<img src="img/424-addproxy.png" width="100%">
+
+Finally, you can check that your configuration is similar to this one (except for your personal code - **jog** in the provided example):
+
+<img src="img/425-product2.png" width="100%">
+
+## Step 4.3 - Create an application
+
+From the **Publish** section, please select the **Apps** tab, as shown here after:
+
+<img src="img/431-apps.png" width="100%">
+
+Click the **+App** button, as shown here:
+
+<img src="img/432-add-apps.png" width="50%">
+
+Enter some basic information related to your app, as shown here after (again please personnalize with your own personal code - **jog** in this example):
+
+<img src="img/433-apps1.png" width="100%">
+
+At the **Credentials** level, click the **Add Product** button, and select the API Product you have just created on the previous step, as shown on the picture:
+
+<img src="img/434-apps-products.png" width="100%">
+
+Once the API Product has been added, you can click the **Create** button, as shown here:
+
+<img src="img/435-apps-create.png" width="100%">
+
+Once your application is created, you can access the **api key** and **api secret** of your application, as shown here:
+
+<img src="img/436-apps-apikeysecret.png" width="100%">
 
 # Step 8 - Wire PCF and Apigee
 
