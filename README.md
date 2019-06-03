@@ -195,7 +195,7 @@ This points to the OpenAPI specification we use in this workshop. You can have a
 
 Before clicking the **Import** button, you should check you get the following info (except the initials...), as shown on the picture: 
 
-<img src="img/223-spec-import.png">
+<img src="img/223-spec-import.png" width="50%">
 
 You can now click the **Import** button to import the OpenAPI specification into the orgqnization.
 
@@ -240,11 +240,11 @@ You should see a message, which confirms that the document has been saved
 
 Click the **API Proxies** tab from the section list, as shown on the following picture:
 
-<img src="img/231-goto-apiproxies.png">
+<img src="img/231-goto-apiproxies.png" width="50%">
 
 Then click on the **+Proxy** button on the right side of the screen, as shown here:
 
-<img src="img/232-plus-apiproxy.png">
+<img src="img/232-plus-apiproxy.png" width="50%">
 
 Select the **Reverse proxy** option and click the **Use OpenAPI** button as shown below:
 
