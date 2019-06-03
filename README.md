@@ -495,9 +495,9 @@ If you want to have a look on your PCF application response, click the circle ju
 
 ## Step 3.1 - Add Traffic Management (Quota Enforcement) and Security (Verify API Key) policies to your API Proxy
 
-Stop the trace session and switch to the **Develop** tab. Select your API Proxy endpoint **Preflow** level, as shown here:
+Stop the trace session and switch to the **Develop** tab. Select your API Proxy endpoint **get /convert** flow, as shown here:
 
-<img src="img/308-apiproxy-preflow.png" width="100%">
+<img src="img/308-apiproxy-condflow.png" width="100%">
 
 If you want to know more about API Proxy flows, please click the following link in order to access detailed documentation related to this topic: 
 
@@ -636,7 +636,7 @@ In order to create a developer portal, please click the **Publish** and then **P
 
 Click the **+Portal** button, as shown here:
 
-<img src="img/512-add-portal.png" width="100%">
+<img src="img/512-add-portal.png" width="50%">
 
 Enter a name for your Developer Portal (an name of your convenience) and select a developer program, as shown here:
 
@@ -683,7 +683,7 @@ From there, you can see your API Product has been deployed:
 
 <img src="img/617-dev-portal-apiproducts.png" width="100%">
 
-At this point, you can directly to step 8 or first test your API Product from the Developer Portal.
+At this point, you can directly go to step 8 or test your API Product from the Developer Portal (Step 7).
 
 # 7 Step 7 - Test your API Product from the Developer Portal
 
@@ -701,9 +701,9 @@ From the Developer Portal, click the **Sign In** link (top right of the portal) 
 
 <img src="img/721-dev-portal-create-account.png" width="50%">
 
-Enter the information of the account that you want to create, and click the **Create Account** button, as showm here:
+Enter the information of the account that you want to create, and click the **Create Account** button, as shown here:
 
-<img src="img/722-dev-portal-create-account-info.png" width="100%">
+<img src="img/722-dev-portal-create-account-info.png" width="50%">
 
 For the purpose of this workshop, please enter a valid email address. You will need to access this mailbox in order to activate the account you have just created.
 
@@ -751,9 +751,16 @@ You should get a response as the one provided on the following picture:
 
 ## Step 7.7 -  Verify the Quota Enforcement is enforced
     
-Remember the 
+Remember that you configured a quota at the API Product level. The quota is defined as: 
 
+```code
+no more than 10 requests per minute for each consuming applications
+</Quota>
+```
 
+Please submit more than 10 requests per 1 minute interval, then you should be able to see the following error:
+
+<img src="img/771-quota-violation.png" width="100%">
 
 
 # Step 8 - Wire PCF and Apigee
