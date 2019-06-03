@@ -618,6 +618,7 @@ Once your application is created, you can access the **api key** and **api secre
 
 <img src="img/436-apps-apikeysecret.png" width="100%">
 
+Please make a copy of the **API Key** value as you will have to use it later, on **Step. 8**
 
 # Step 5 - Create your own API Developer Portal
 
