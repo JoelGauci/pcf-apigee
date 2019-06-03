@@ -559,7 +559,7 @@ Finally, the API Product will be bound to this application and this will allow t
 ## Step 4.1 - Create a developer
 In order to create a developer, please click the **Publish** and then **Developers** tab, as shown here after:
 
-<img src="img/411-publish-developers.png" width="100%">
+<img src="img/411-publish-developers.png" width="50%">
 
 Click the **+Developer** button, in order to add a new developer:
 
@@ -579,7 +579,7 @@ As you can see, no application has been linked to the developer. Let's create a 
 
 From the **Publish** section, please select the **API Products** tab, as shown here after:
 
-<img src="img/421-products.png" width="100%">
+<img src="img/421-products.png" width="50%">
 
 Click the **+API Product** button, as shown here:
 
@@ -601,7 +601,7 @@ Finally, you can check that your configuration is similar to this one (except fo
 
 From the **Publish** section, please select the **Apps** tab, as shown here after:
 
-<img src="img/431-apps.png" width="100%">
+<img src="img/431-apps.png" width="50%">
 
 Click the **+App** button, as shown here:
 
