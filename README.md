@@ -623,6 +623,15 @@ Once your application is created, you can access the **api key** and **api secre
 
 <img src="img/436-apps-apikeysecret.png" width="100%">
 
+
+# 5 Step 5 - Create your own API Developer Portal
+
+In this section we create a developer portal.
+
+## Step 5.1 - Instanciate a Developer Portal from your Apigee Edge organization
+
+
+
 # Step 8 - Wire PCF and Apigee
 
 You successfully deployed an app to Cloud Foundry, and you now have an Apigee
