@@ -155,11 +155,11 @@ As a participant, please connect to your email inbox and activate your demo acco
 
 At this point, you should be able to access the Apigee Edge login screen, as shown here:
 
-<img src="img/211-login-screen.png">
+<img src="img/211-login-screen.png" width="50%">
 
 Once you are connected, you should be able to see the Apigee Edge home page, note that you work in the **emea-poc7** organization, as shown on the following picture:
 
-<img src="img/212-apigee-org.png">
+<img src="img/212-apigee-org.png" width="50%">
 
 Here is an overview of the Apigee Edge home page:
 
