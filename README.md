@@ -755,12 +755,11 @@ Remember that you configured a quota at the API Product level. The quota is defi
 
 ```code
 no more than 10 requests per minute for each consuming applications
-</Quota>
 ```
 
 Please submit more than 10 requests per 1 minute interval, then you should be able to see the following error:
 
-<img src="img/771-quota-violation.png" width="100%">
+<img src="img/771-quota-violation.png" width="50%">
 
 
 # Step 8 - Wire PCF and Apigee
