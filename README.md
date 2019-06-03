@@ -24,9 +24,10 @@ Let's get started, and feel free to ask for any questions during the completion 
 
 PCF & Google Apigee Workshop
 
-1. Step 1 - Access your PCF - Pivotal Cloud Foundry demo account - !!!!!
-    - 1.1 Deploy the **eurodol** application
-    - 1.2 Test the **eurodol** application
+1. Step 1 - Deploy an app to the Cloud using PCF
+    - 1.1 Create your PCF account
+    - 1.2 Deploy the **eurodol** application
+    - 1.3 Test the **eurodol** application
 2. Step 2 - API Creation on the Apigee Edge SaaS platform
     - 2.1 Connect to your Apigee organization
     - 2.2 Upload the OpenAPI **eurodol-v1** specification
@@ -51,7 +52,7 @@ PCF & Google Apigee Workshop
     - Subscribe to the **eurodol** API Product
     - Test your API Product
     - Verify the Quota Enforcement is enforced
-8. Step 8 - Use the API Product and Application on your PCF demo account - !!!!!
+8. Step 8 - Wire PCF and Apigee
 9. Step 9 - Analytics and API Monitoring in Apigee Edge
     - 9.1 Connect your Apigee organization
     - Switch to the Analytics Tab
@@ -71,22 +72,86 @@ PCF & Google Apigee Workshop
 
 # 1. Step 1
 
-This chapter introduces step 1:
+In this lab, we use an hosted Pivotal Cloud Foundry instance:
+[Pivotal Web Services](https://run.pivotal.io). This instance
+offers free credit to push apps to the Cloud: it's a great way
+to discover the `cf push` experience.
 
-## Step 1.1
+<img src="img/pws-homepage.png"/>
 
-### Step 1.1.1
+## Step 1.1 - Create your PCF account
 
-```code
-ubuntu$ echo "Hello World!!!"
-Hello World!!!
+Go to https://run.pivotal.io, and
+[create a free account](https://try.run.pivotal.io/homepage)
+from the login page.
+
+Sign-in using your account, and go to the
+[Tools section](https://console.run.pivotal.io/tools).
+
+Download the `cf` CLI tool from this page.
+Follow instructions to login using the `cf` CLI tool:
+
+<img src="img/pws-tools.png"/>
+
+## Step 1.2 - Deploy the **eurodol** application
+
+[Eurodol](https://github.com/alexandreroman/eurodol)
+is a Cloud-native app, leveraging Spring Boot,
+Spring Cloud & Vue.js. Using your PCF account, you're about to
+push this app to the Cloud in no time.
+
+<img src="img/eurodol-app.png"/>
+
+From the [releases tab](https://github.com/alexandreroman/eurodol/releases),
+download the latest version of the app.
+You need to get the JAR file (`eurodol-X.jar`) and the
+Cloud Foundry manifest (`manifest.yml`).
+
+Now that you have the files on your workstation, open a terminal
+and enter this command:
+```bash
+$ cf push --random-route
 ```
 
+Your JAR file will be uploaded to Cloud Foundry: the platform will
+take care of creating a container for you with all required
+dependencies (Java Runtime Environment, Spring Boot support,
+memory settings, etc.). You will end up with a domain registered for
+your app instance: something like `eurodol-RANDOM-WORDS.cfapps.io`.
+
+## Step 1.3 - Test the **eurodol** application
+
+Your app is now up and running thanks to Cloud Foundry.
+Using the public app endpoint, you're about to check if the app is
+working as expected.
+
+Get the public app endpoint using this command:
+```bash
+$ cf app eurodol
+Showing health and status for app eurodol-test in org EMEA / space aroman as aroman@pivotal.io...
+
+name:              eurodol
+requested state:   started
+routes:            eurodol-terrific-nyala.cfapps.io
+last uploaded:     Mon 03 Jun 13:36:54 CEST 2019
+stack:             cflinuxfs3
+buildpacks:        client-certificate-mapper=1.8.0_RELEASE container-security-provider=1.16.0_RELEASE
+                   java-buildpack=v4.19-offline-https://github.com/cloudfoundry/java-buildpack.git#3f4eee2 java-main java-opts java-security jvmkill-agent=1.16.0_RELEASE
+                   open-jdk-...
+
+type:           web
+instances:      1/1
+memory usage:   1024M
+     state     since                  cpu    memory         disk           details
+#0   running   2019-06-03T11:37:15Z   0.5%   175.3M of 1G   134.3M of 1G
+```
+
+Look at section `routes`: this is how you can reach your app using a
+browser. Hit this URL, and you should be able to access the app.
 
 # 2. Step 2 - API Creation on the Apigee Edge SaaS platform
 
 In this section, you connect to the Apigee Edge platform using your own account. After a quick introduction to the Apigee platform and main tabs, you start creating your first API Proxy and set its configuration.
-
 
 ## Step 2.1 - Connect to your Apigee organization
 Before starting this lab, instructors have created an Apigee Edge (SaaS) demo account for each participant.
@@ -287,6 +352,25 @@ You can check that the name of the Assign Message policy has changed. It is now 
 
 <img src="img/247-apiproxy-AM-name.png">
 
+# Step 8 - Wire PCF and Apigee
+
+You successfully deployed an app to Cloud Foundry, and you now have an Apigee
+proxy running: it's time to wire these two beasts together.
+
+Run these commands to enable Apigee proxy support in the app:
+```bash
+$ cf set-env eurodol APP_APIKEY <your-api-key>
+$ cf set-env eurodol APP_APIENV <your-personal-code>
+$ cf set-env eurodol APP_APIENDPOINT <url-to-apigee-proxy>
+```
+
+Run this command to apply this configuration and reload the app:
+```bash
+$ cf restage eurodol
+```
+
+Use your browser to hit the app endpoint: all API calls are now
+redirected to the Apigee proxy.
 
 ---
 <div style="background-color:#5A0F1B;color:white; vertical-align: middle; text-align:center;font-size:190%; padding:10px; margin-top:100px">
