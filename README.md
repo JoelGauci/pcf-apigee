@@ -797,13 +797,16 @@ From the Analytics dashboards, you can get information about:
 # Appendix A. Apigee Edge Resources
 
 ## 4 minute video 4 developers
-    [4Mv4D](https://www.youtube.com/playlist?list=PLIXjuPlujxxxe3iTmLtgfIBgpMo7iD7fk)
+
+You cann access the 4 minute video 4 developers here: [4Mv4D](https://www.youtube.com/playlist?list=PLIXjuPlujxxxe3iTmLtgfIBgpMo7iD7fk)
 
 ## Apigee docs
-    [Apigee Docs](https://docs.apigee.com)
+    
+You can access the Apigee Docs here: [Apigee Docs](https://docs.apigee.com)
 
 ## Apigee community
-    [Apigee Community](https://community.apigee.com)
+
+You can access the Apigee Community here: [Apigee Community](https://community.apigee.com)
 
 # Appendix B. Pivotal Cloud Foundry Resources
 
