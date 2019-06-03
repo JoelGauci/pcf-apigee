@@ -630,7 +630,25 @@ In this section we create a developer portal.
 
 ## Step 5.1 - Instanciate a Developer Portal from your Apigee Edge organization
 
+In order to create a developer portal, please click the **Publish** and then **Portals** tab, as shown here after:
 
+<img src="img/511-portals.png" width="50%">
+
+Click the **+Portal** button, as shown here:
+
+<img src="img/512-add-portal.png" width="100%">
+
+Enter a name for your Developer Portal (an name of your convenience) and select a developer program, as shown here:
+
+<img src="img/513-create-portal.png" width="100%">
+
+Please wait for a few seconds and your dev portal is created!!!
+
+<img src="img/514-dev-portal.png" width="100%">
+
+Click the **Live Portal** link (at the right top of the screen) in order to access your developer portal:
+
+<img src="img/515-default-dev-portal.png" width="100%">
 
 # Step 8 - Wire PCF and Apigee
 
