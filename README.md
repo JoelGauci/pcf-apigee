@@ -54,23 +54,18 @@ PCF & Google Apigee Workshop
     - 7.7 Verify the Quota Enforcement is enforced
 8. Step 8 - Wire PCF and Apigee
 9. Step 9 - Analytics and API Monitoring in Apigee Edge
-    - 9.1 Connect to your Apigee organization
-    - 9.2 Switch to the Analytics Tab
-    - 9.3 Discover the Analytics for your API Proxy and API Product
-    - 9.4 Discover the API Monitoring capabilities of the Apigee API Managemnent platformn
 10. Step 10 - Wrap Up
-
 
     Appendix A. Apigee Edge Resources
 
     - 4 minute video 4 developers
-    - Apigee docs: 
-    - Apigee community: 
+    - Apigee docs
+    - Apigee community
 
     Appendix B. Pivotal Cloud Foundry Resources
 
 
-# 1. Step 1
+# Step 1
 
 In this lab, we use an hosted Pivotal Cloud Foundry instance:
 [Pivotal Web Services](https://run.pivotal.io). This instance
@@ -149,7 +144,7 @@ memory usage:   1024M
 Look at section `routes`: this is how you can reach your app using a
 browser. Hit this URL, and you should be able to access the app.
 
-# 2. Step 2 - API Creation on the Apigee Edge SaaS platform
+# Step 2 - API Creation on the Apigee Edge SaaS platform
 
 In this section, you connect to the Apigee Edge platform using your own account. After a quick introduction to the Apigee platform and main tabs, you start creating your first API Proxy and set its configuration.
 
@@ -624,7 +619,7 @@ Once your application is created, you can access the **api key** and **api secre
 <img src="img/436-apps-apikeysecret.png" width="100%">
 
 
-# 5 Step 5 - Create your own API Developer Portal
+# Step 5 - Create your own API Developer Portal
 
 In this section we create a developer portal.
 
@@ -650,7 +645,7 @@ Click the **Live Portal** link (at the right top of the screen) in order to acce
 
 <img src="img/515-default-dev-portal.png" width="100%">
 
-# 6 Step 6 - Publish your API Product into your API Developer Portal
+# Step 6 - Publish your API Product into your API Developer Portal
 In this section, you pwill publish the API product into your developer portal and generate the technical documentation based on the **eurodol-v1** Open API specification.
 
 ## Step 6.1 - Publish your eurodol API Product
@@ -685,7 +680,7 @@ From there, you can see your API Product has been deployed:
 
 At this point, you can directly go to step 8 or test your API Product from the Developer Portal (Step 7).
 
-# 7 Step 7 - Test your API Product from the Developer Portal
+# Step 7 - Test your API Product from the Developer Portal
 
 In this section, we test the API Product that has just been deployed on the Developer Portal, from the Developer Portal itself!
 
@@ -754,13 +749,12 @@ You should get a response as the one provided on the following picture:
 Remember that you configured a quota at the API Product level. The quota is defined as: 
 
 ```code
-no more than 10 requests per minute for each consuming applications
+no more than 10 requests per minute for each consuming application.
 ```
 
 Please submit more than 10 requests per 1 minute interval, then you should be able to see the following error:
 
 <img src="img/771-quota-violation.png" width="50%">
-
 
 # Step 8 - Wire PCF and Apigee
 
@@ -781,6 +775,38 @@ $ cf restage eurodol
 
 Use your browser to hit the app endpoint: all API calls are now
 redirected to the Apigee proxy.
+
+
+# Step 9 - Analytics and API Monitoring in Apigee Edge
+
+Please connect to your Apigee organization and switch to the **Analyse** (Analytics) tab.
+From there, you can access different dashboards, which present the analytics data based on your API traffic.
+From the Analytics dashboards, you can get information about:
+    - API Proxy performance
+    - Cache Performance
+    - Developer Engagement
+    - Devices
+    - Error Code Analysis
+    - Geomap
+    - Latency Analysis
+    - Traget Performance
+    - Traffic Composition
+    ... and much more...
+
+
+# Appendix A. Apigee Edge Resources
+
+## 4 minute video 4 developers
+    [4Mv4D](https://www.youtube.com/playlist?list=PLIXjuPlujxxxe3iTmLtgfIBgpMo7iD7fk)
+
+## Apigee docs
+    [Apigee Docs](https://docs.apigee.com)
+
+## Apigee community
+    [Apigee Community](https://community.apigee.com)
+
+# Appendix B. Pivotal Cloud Foundry Resources
+
 
 ---
 <div style="background-color:#5A0F1B;color:white; vertical-align: middle; text-align:center;font-size:190%; padding:10px; margin-top:100px">
