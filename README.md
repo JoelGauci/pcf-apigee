@@ -153,7 +153,7 @@ Before starting this lab, instructors have created an Apigee Edge (SaaS) demo ac
 Accounts have been created with your email addresses. 
 As a participant, please connect to your email inbox and activate your demo account, if not completed yet.
 
-At this point, you should be able to access the Apigee Edge login screen, as shown here:
+At this point, you should be able to access the [Apigee Edge login screen](https://apigee.com/), as shown here:
 
 <img src="img/211-login-screen.png" width="50%">
 
