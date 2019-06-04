@@ -46,7 +46,7 @@ PCF & Google Apigee Workshop
     - 6.2 Generate doc using the OpenAPI **eurodol-v1** specification
 7. Step 7 - Test your API Product from the Developer Portal
     - 7.1 Connect to your Developer Portal
-    - 7.2 Create an account an your Developer Portal
+    - 7.2 Create an account on your Developer Portal
     - 7.3 Activate your account and sign in
     - 7.4 Create an Application on your Developer Portal
     - 7.5 Subscribe to the **eurodol** API Product
@@ -165,31 +165,31 @@ Here is an overview of the Apigee Edge home page:
 
 <img src="img/213-apigee-home.png">
 
-Also note that you are working with an __Organization Admninistrator__ role.
+Also note that you are working with an __Organization Administrator__ role.
 
 As, you can see, the home page consists in several icons:
-- Specs : this is the place where you upload all your OpenAPI specification files. Then you can use these files to create API Proxies
-- API Proxies : at this point, just consider an API Proxy as an "API Façade", on which you can add technical controls, in the form of mediation, traffic management, security policies as well as extensions.
-- API Products : an API Product is a way to package a set of API Proxies. It can be used to define quotas, custom attributes, OAuth20 scopes and some other specific properties: visibility on the Developer Portal, approval mecahnism for application subscription...
-- Portals : once you have created API Products, you can make them available through a Developer Portal
+- **Specs** : this is the place where you upload all your OpenAPI specification files. Then you can use these files to create API Proxies
+- **API Proxies** : at this point, just consider an API Proxy as an "API Façade", on which you can add technical controls, in the form of mediation, traffic management, security policies as well as extensions.
+- **API Products** : an API Product is a way to package a set of API Proxies. It can be used to define quotas, custom attributes, OAuth20 scopes and some other specific properties: visibility on the Developer Portal, approval mecahnism for application subscription...
+- **Portals** : once you have created API Products, you can make them available through a Developer Portal
 
-We have just covered here some aspects of an API life cycle...from the Design to the publication of product on a Developer Portal !
+We have just covered here some aspects of an API life cycle...from the design to the publication of product on a Developer Portal !
 
 ## Step 2.2 -  Upload the OpenAPI eurodol-v1 specification
 
 Click on the **Specs** icon, or access the **specs** tab, as shown here:
 
-<img src="img/221-specs-tab.png">
+<img src="img/221-specs-tab.png" width="50%">
 
 Click the **+Spec** button on the right and top side of the panel, as shown on the image, then select **Import URL...** :
 
-<img src="img/222-plus-spec-button.png">
+<img src="img/222-plus-spec-button.png" width="50%">
 
 As **Import Name**, please enter a name of your convenience. Please be aware that this organization is also used by the other participants so you have to find a way to make the name of your file unique! Be creative, for instance you can add your initials to the name of the file: **eurodol-v1_YOUR-INITIALS** (eurodol-v1_jog in my case)
 
 As **Import Url**, please copy and paste the following value: https://raw.githubusercontent.com/JoelGauci/pcf-apigee/master/apigee/specs/eurodol-v1.yaml
 
-This points to the OpenAPI specification we use in this workshop. You can have a look at the specification if you click on the following link:
+This URL points to the OpenAPI specification we use in this workshop. You can have a look at the specification if you click on the following link:
 
 [eurodol-v1 OpenAPI specification](https://raw.githubusercontent.com/JoelGauci/pcf-apigee/master/apigee/specs/eurodol-v1.yaml)
 
@@ -197,7 +197,7 @@ Before clicking the **Import** button, you should check you get the following in
 
 <img src="img/223-spec-import.png" width="50%">
 
-You can now click the **Import** button to import the OpenAPI specification into the orgqnization.
+You can now click the **Import** button to import the OpenAPI specification into the organization.
 
 From the Specs list, find your **eurodol-v1** personal specification and click on it, as shown on the following picture:
 
@@ -207,12 +207,12 @@ This will show the content of your **eurodol-v1** specification, as shown here a
 
 <img src="img/225-eurodol-spec.png">
 
-Important: you have to make a modification on this file...See the **{YOUR_PERSONAL_CODE}** pattern in the file...you should find it around line 16...
+**Important**: you have to make a modification on this file...See the **{YOUR_PERSONAL_CODE}** pattern in the file...you should find it around line 16...
 
 <img src="img/226-perso-pattern.png">
 
 ...modify the pattern with your own initials or a pattern of your convenience (do not include any special characters).
-Please take note of these initials as you will have to use them later in the workshop.
+Please take note of this personal code as you will have to use it later in the workshop.
 
 ```code
 /{YOUR_PERSONAL_CODE}/api/v1
@@ -224,7 +224,7 @@ becomes
 /jog/api/v1
 ```
 
-Here is an example of the result in my case, when using the initials **jog**:
+Here is an example of the result in my case, when using the personal code **jog**:
 
 <img src="img/227-jog-pattern.png">
 
@@ -259,7 +259,7 @@ Then click the **Next** button, as shown on the following picture:
 This will start the creation process of your **eurodol** API Proxy...
 
 On the next panel, please make some modification to make your API Proxy and its base path unique:
-1. Add your initials to the name of the API Proxy: **eurodol-jog** in my case
+1. Add your personal code to the name of the API Proxy: **eurodol-jog** in my case
 2. Copy and paste the URI of the **Existing API** URL to the **Proxy Base Path** text field
 3. Modify the value of the **Existing API** hostname with the value of your PCF app hostname : **https://eurodol-brash-lemur.cfapps.io** in my case 
 
@@ -271,7 +271,7 @@ Also important is to "clean" the value of the **Existing API** field: remove you
 
 At the end, you should see something like this:
 
-<img src="img/23b5-apiproxy-settings.png">
+<img src="img/235b-apiproxy-settings.png">
 
 If everything is checked on your side, you can click the **Next** button
 
@@ -474,7 +474,7 @@ Then click the **Send** button to request the specific resource, as shown on the
 
 <img src="img/304-apiproxy-trace-send.png" width="100%">
 
-A transacation should appear on the left hand side of the **Trace** panel:
+A transaction should appear on the left hand side of the **Trace** panel:
 
 <img src="img/305-apiproxy-trace-transactions.png" width="100%">
 
@@ -482,7 +482,7 @@ You can follow the execution of you API Proxy and its policies using the **Trace
 
 <img src="img/306-apiproxy-trace-steps.png" width="100%">
 
-Take some time to discover the **Trace & Debug** tool or ask for any questions to instructors in case yiuy need detailed inforamtion at this point of the workshop.
+Take some time to discover the **Trace & Debug** tool or ask for any questions to instructors in case you need detailed information at this point of the workshop.
 
 If you want to have a look on your PCF application response, click the circle just after the factory symbol (the provider or backend app/api). You will then be able to see the response of your backend app, as shown here:
 
@@ -506,7 +506,7 @@ Select the **Verify API Key** policy (part fo the security policies) and click t
 
 <img src="img/30A-apiproxy-vak.png" width="100%">
 
-On the policy XML configuration, change the APIKey ref attribute value:
+On the policy XML configuration, change the **APIKey ref attribute** value:
 
 <img src="img/30B-apiproxy-vak-apikey.png" width="100%">
 
@@ -516,7 +516,7 @@ On the policy XML configuration, change the APIKey ref attribute value:
 
 This configuration means that your API Proxy enforces an API Key verification.  The API key that is enforced is extracted from an HTTP request header, whose name is **x-apikey**
 
-Click the **+Step** again (on the request side), and add a **Quota** enforcement policy (from the traffic managememnt set of policies):
+Click the **+Step** again (on the request side), and add a **Quota** enforcement policy (from the traffic management set of policies):
 
 <img src="img/30C-apiproxy-quota.png" width="100%">
 
@@ -542,7 +542,7 @@ As defined in the configuration, the quota will be used as defined in the produc
 To know more about API Products, please contact your instructors or access the following link:
 [API Product](https://docs.apigee.com/api-platform/publish/what-api-product)
 
-Save the configuration of your API Proxy (remember you to click the **Save** button on the left hand side...)
+Save the configuration of your API Proxy as a new revision (remember you have to click the **Save** button on the left hand side...)
 
 # Step 4 - Wire PCF and Apigee Step 4 - Package your API Proxy into an API Product in Apigee Edge
 
@@ -568,7 +568,7 @@ You should see a new developer (you) in the list of available developers. Inform
 
 <img src="img/414-developer-info.png" width="100%">
 
-As you can see, no application has been linked to the developer. Let's create a developer app!
+As you can see, no application has been linked to the developer.
 
 ## Step 4.2 - Create an API Product 
 
@@ -580,7 +580,9 @@ Click the **+API Product** button, as shown here:
 
 <img src="img/422-add-products.png" width="50%">
 
-Please enter the information related to your API Product. You should see mostly the same type of data except that you have to use your personal code (**jog** in the example):
+Please enter the information related to your API Product. 
+Please enter a **quota** and some others required data to your API Product.
+Finally, you should see mostly the same type of data except that you have to use your personal code (**jog** in the example below):
 
 <img src="img/423-product1.png" width="100%">
 
@@ -602,11 +604,11 @@ Click the **+App** button, as shown here:
 
 <img src="img/432-add-apps.png" width="50%">
 
-Enter some basic information related to your app, as shown here after (again please personnalize with your own personal code - **jog** in this example):
+Enter some basic information related to your app, as shown here after (again please customize with your own personal code - **jog** in this example):
 
 <img src="img/433-apps1.png" width="100%">
 
-At the **Credentials** level, click the **Add Product** button, and select the API Product you have just created on the previous step, as shown on the picture:
+At the **Credentials** level, click the **Add product** button, and select the API Product you have just created on the previous step, as shown on the picture:
 
 <img src="img/434-apps-products.png" width="100%">
 
@@ -667,7 +669,7 @@ Select your **eurodol** API Product from the API Products list, and then click *
 
 On the following window, select **Choose a different spec...** and select your **eurodol-v1** Open API specification, as shown here after, and click the **Select** button:
 
-<img src="img/614-dev-portal-oas.png" width="100%">
+<img src="img/614-dev-portal-oas.png" width="50%">
 
 <img src="img/615-dev-portal-oas.png" width="100%">
 
@@ -691,7 +693,7 @@ In order to connect to your Developer Portal, click the **Live Portal** link, as
 
 <img src="img/711-dev-portal.png" width="100%">
 
-## Step 7.2 -  Create an account an your Developer Portal
+## Step 7.2 -  Create an account on your Developer Portal
 
 From the Developer Portal, click the **Sign In** link (top right of the portal) and then click the link **Create account**, as shown here:
 
@@ -723,7 +725,7 @@ Click the **+New App** button to start creating your first application from your
 
 ## Step 7.5 -  Subscribe to the **eurodol** API Product
 
-Please provide the requried information, select the **eurodol** API Product and click the **Create** icon, as shown on the following picture:
+Please provide the required information, select the **eurodol** API Product and click the **Create** icon, as shown on the following picture:
 
 <img src="img/743-dev-portal-app.png" width="100%">
 
@@ -741,7 +743,7 @@ Select the **convert** resource (on the left), then enter a value that you want 
 
 <img src="img/762-execute.png" width="100%">
 
-You should get a response as the one provided on the following picture:
+You should get a response similar to the one provided on the following picture:
 
 <img src="img/763-result.png" width="100%">
 
@@ -753,9 +755,11 @@ Remember that you configured a quota at the API Product level. The quota is defi
 no more than 10 requests per minute for each consuming application.
 ```
 
-Please submit more than 10 requests per 1 minute interval, then you should be able to see the following error:
+Please submit more than 10 requests per 1 minute interval, then you should be able to see the following type of error:
 
 <img src="img/771-quota-violation.png" width="50%">
+
+Please note that this error message and status code could be customized.
 
 # Step 8 - Wire PCF and Apigee
 
@@ -783,16 +787,17 @@ redirected to the Apigee proxy.
 Please connect to your Apigee organization and switch to the **Analyse** (Analytics) tab.
 From there, you can access different dashboards, which present the analytics data based on your API traffic.
 From the Analytics dashboards, you can get information about:
-    - API Proxy performance
-    - Cache Performance
-    - Developer Engagement
-    - Devices
-    - Error Code Analysis
-    - Geomap
-    - Latency Analysis
-    - Traget Performance
-    - Traffic Composition
-    ... and much more...
+
+- API Proxy performance
+- Cache Performance
+- Developer Engagement
+- Devices
+- Error Code Analysis
+- Geomap
+- Latency Analysis
+- Traget Performance
+- Traffic Composition
+... and much more...
 
 
 # Appendix A. Apigee Edge Resources
